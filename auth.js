@@ -1,22 +1,12 @@
+// function to respond to unauthorized user
+function sendUnauthorized(res) {
+    res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Access to memories"' });
+    res.end('Authentication required');
+}
 
-// const auth = (req, res, next) => {
-//     const { username, password } = req.headers;
-    // const authHeader = req.headers.authorization;
-
-//     if (username !== "admin" || password !== "password") {
-//         res.writeHead(401, { 'Content-Type': 'text/plain' });
-//         res.end('Authentication required');
-//     } else {
-//         next();
-//     }
-// };
-
-// module.exports = auth;
-
-
-// auth.js
-
+// functon to authenticate user.
 const auth = (req, res, next) => {
+   // authorizaton from header
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -33,10 +23,5 @@ const auth = (req, res, next) => {
         sendUnauthorized(res);
     }
 };
-
-function sendUnauthorized(res) {
-    res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Access to memories"' });
-    res.end('Authentication required');
-}
 
 module.exports = auth;
