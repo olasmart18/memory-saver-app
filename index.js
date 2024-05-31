@@ -5,6 +5,7 @@ const auth = require("./auth");
 
 // Initialize memories array
 let memories = [];
+const PORT = 5000;
 
 // create server usiing http 
 const server = http.createServer((req, res) => {
@@ -46,6 +47,6 @@ const server = http.createServer((req, res) => {
     }
 });
 
-    server.listen(3000, () => {
-        console.log("Server is running on port 3000");
+    server.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
       });
